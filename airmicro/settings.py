@@ -25,7 +25,7 @@ SECRET_KEY = '-$bea9&xk^7cy=jgb7p*3q9yk@3-@w1o)9z%r_kdkz^j97uv6g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['airmicro.herokuapp.com']
 
 
 # Application definition
