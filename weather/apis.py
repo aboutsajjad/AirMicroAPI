@@ -7,4 +7,4 @@ from weather.serializers import WeatherSerializer
 class WeatherListCreateAPIView(ListCreateAPIView):
     permission_classes = (AllowAny,)
     serializer_class = WeatherSerializer
-    queryset = Weather.objects.all()
+    queryset = Weather.objects.order_by('-id').all()
