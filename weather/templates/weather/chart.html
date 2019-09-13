@@ -1,0 +1,98 @@
+{% extends 'weather/base.html' %}
+
+
+{% block content %}
+    {% block extra_head %}
+        <title>Chart</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
+              integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous"/>
+    {% endblock %}
+
+    <canvas id="weatherChart" width="100%" height="50px"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+            integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <script>
+        let ctx = document.getElementById('weatherChart').getContext('2d');
+        let myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [{% for i in object_list %} "{{ i.created_at }}",{% endfor %}],
+                datasets: [
+                    {
+                        label: 'Temperature',
+                        data: [{% for i in object_list %}{{ i.temperature }}, {% endfor %}],
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        fill: false,
+                    },
+                    {
+                        label: 'Heat Index',
+                        data: [{% for i in object_list %}{{ i.heat_index }}, {% endfor %}],
+                        backgroundColor: 'rgb(75, 192, 192)',
+                        borderColor: 'rgb(75, 192, 192)',
+                        fill: false,
+                    },
+                    {
+                        label: 'Humidity',
+                        data: [{% for i in object_list %}{{ i.humidity }}, {% endfor %}],
+                        backgroundColor: 'rgb(255, 159, 64)',
+                        borderColor: 'rgb(255, 159, 64)',
+                        fill: false,
+                    },
+                    {
+                        label: 'Pressure',
+                        data: [{% for i in object_list %}{{ i.pressure }}, {% endfor %}],
+                        backgroundColor: 'rgb(255, 205, 86)',
+                        borderColor: 'rgb(255, 205, 86)',
+                        fill: false,
+                    },
+                    {
+                        label: 'Altitude',
+                        data: [{% for i in object_list %}{{ i.altitude }}, {% endfor %}],
+                        backgroundColor: 'rgb(54, 162, 235)',
+                        borderColor: 'rgb(54, 162, 235)',
+                        fill: false,
+                    },
+                    {
+                        label: 'MICS5524',
+                        data: [{% for i in object_list %}{{ i.mics5524 }}, {% endfor %}],
+                        backgroundColor: 'rgb(153, 102, 255)',
+                        borderColor: 'rgb(153, 102, 255)',
+                        fill: false,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Weather Line Chart'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+{% endblock %}

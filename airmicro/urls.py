@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('v1/', include(('weather.urls', 'weather'), namespace='weather')),
+    path('', RedirectView.as_view(url='/weathers/', permanent=False)),
+    path('', include(('weather.urls', 'weather'), namespace='weather')),
 ]
 
 if settings.DEBUG:

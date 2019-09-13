@@ -25,7 +25,7 @@ SECRET_KEY = '-$bea9&xk^7cy=jgb7p*3q9yk@3-@w1o)9z%r_kdkz^j97uv6g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['airmicro.herokuapp.com']
+ALLOWED_HOSTS = ['airmicro.herokuapp.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'weather'
+    'weather',
+    'autofixture'
 ]
 
 MIDDLEWARE = [
@@ -127,6 +128,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
-
+STATICFILES_DIRS = [
+    "weather/static/weather",
+]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

@@ -1,0 +1,34 @@
+{% extends 'weather/base.html' %}
+
+{% block extra_head %}
+    <title>Table</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
+          integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous"/>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Temperature (°C)</th>
+            <th>Heat Index (°C)</th>
+            <th>Pressure (Pa)</th>
+            <th>Humidity (%)</th>
+            <th>Altitude (m)</th>
+            <th>MICS5524</th>
+        </tr>
+        {% for weater in object_list %}
+            <tr>
+                <td>{{ weater.id }}</td>
+                <td>{{ weater.created_at }}</td>
+                <td>{{ weater.temperature }}</td>
+                <td>{{ weater.heat_index }}</td>
+                <td>{{ weater.pressure }}</td>
+                <td>{{ weater.humidity }}</td>
+                <td>{{ weater.altitude }}</td>
+                <td>{{ weater.mics5524 }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
