@@ -7,7 +7,6 @@ class Weather(BaseModel):
     temperature = models.FloatField()
     pressure = models.FloatField()
     humidity = models.FloatField()
-    altitude = models.FloatField()
     mics5524 = models.FloatField()
 
     @property
@@ -21,3 +20,7 @@ class Weather(BaseModel):
     @property
     def heat_index(self):
         return heat_index(temperature=self.temp, humidity=self.humidity).c
+
+    @property
+    def altitude(self):
+        return 1000
